@@ -113,10 +113,14 @@ docs.chain.link/
 4. **Deployment Settings**
    - In Remix, go to "Deploy & Run Transactions" tab
    - Select "Injected Provider - MetaMask" as environment
-   - Enter the following contract parameters:
+   - Enter the following contract parameters:<br>
+      Router Address:
      ```
-     Router Address: 0xF694E193200268f9a4868e4Aa017A0118C9a8177
-     LINK Address: 0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846
+     0xF694E193200268f9a4868e4Aa017A0118C9a8177
+     ```
+     LINK Address:
+     ```
+      0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846
      ```
 
 5. **Contract Deployment**
@@ -150,9 +154,10 @@ docs.chain.link/
 3. **Deployment Settings**
    - Access "Deploy & Run Transactions" tab in Remix
    - Select "Injected Provider - MetaMask"
-   - Enter the router address:
+   - Enter the router address:<br>
+     Router Address:
      ```
-     Router Address: 0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59
+     0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59
      ```
 
 4. **Contract Deployment**
@@ -165,6 +170,107 @@ docs.chain.link/
    - Confirm contract appears in Deployed Contracts list
    - Copy and save the contract address
    - Verify deployment on Sepolia block explorer
+
+### Sending Patient Data Cross-Chain
+
+1. **Network Setup**
+   - Open MetaMask
+   - Select Avalanche Fuji network
+   - Access deployed contracts in Remix
+
+2. **Prepare Transaction**
+   - Expand Deployed Contracts section
+   - Locate sendMessage function
+   - Fill in the following parameters:
+     ```
+     destinationChainSelector: 16015286601757825753  // Ethereum Sepolia chain ID
+     receiver: [Your Deployed Receiver Contract Address]
+     patientInfo: {
+         patientName: <Name>,
+         patientAge: <Age>,
+         bloodGroup: <Blood group>,
+         medicalHistory: <Findings on examination>,
+         timestamp: [Current Unix Timestamp]
+     }
+     ```
+
+3. **Execute Transfer**
+   - Click "transact" button
+   - Confirm transaction in MetaMask
+   - Save transaction hash for tracking
+
+4. **Monitor Transaction**
+   - Wait for source chain confirmation
+   - Allow 3-5 minutes for CCIP processing
+   - Track status using [CCIP Explorer](https://ccip.chain.link)
+
+5. **Transaction Monitoring**
+   - Input transaction hash in CCIP Explorer
+   - Monitor cross-chain progress
+   - Verify successful data delivery
+
+6. **Gas Considerations**
+   - Keep extra LINK tokens for gas spikes
+   - Recommended balance: 70+ LINK tokens
+   - Additional LINK available at faucets.chain.link
+
+7. **Success Verification**
+   - Check "Success" status in CCIP Explorer
+   - Verify data on Ethereum Sepolia
+   - Confirm patient data in receiver contract
+  
+### Reading Patient Data from Receiver Contract
+
+1. **Access Receiver Contract**
+   - Open MetaMask
+   - Select Ethereum Sepolia network
+   - Navigate to Remix IDE's "Deploy & Run Transactions" tab
+   - Locate your deployed receiver contract
+
+2. **View Patient Information**
+   - Click `getLastReceivedMessageDetails()`
+   - Returns two values:
+     ```solidity
+     messageId: [unique CCIP message identifier]
+     patientInfo: {
+         patientName: "Patient Name",
+         patientAge: [age in years],
+         bloodGroup: "Blood Type",
+         medicalHistory: "Medical History Details",
+         timestamp: [transfer timestamp]
+     }
+     ```
+
+3. **Data Verification**
+   - Confirm message ID matches the sent transaction
+   - Verify all patient details are correctly transferred
+   - Check timestamp for transfer time
+
+The successful data retrieval confirms the complete cross-chain transfer of patient information using Chainlink's CCIP protocol. Your medical data bridge is now fully operational between Avalanche Fuji and Ethereum Sepolia networks.
+
+## Conclusion
+
+HealthBridge successfully demonstrates secure cross-chain medical data transfer using Chainlink's CCIP protocol. The system enables:
+
+- Seamless patient data sharing between Avalanche Fuji and Ethereum Sepolia networks
+- Structured storage and retrieval of medical information
+- Real-time cross-chain updates with transaction verification
+- Secure and efficient healthcare data management
+
+The implementation provides a foundation for blockchain-based healthcare interoperability, allowing medical institutions to share patient data while maintaining security and data integrity across different networks.
+
+### Future Scope
+- Integration with additional blockchain networks
+- Enhanced data encryption mechanisms
+- Advanced patient data management features
+- Automated compliance and audit trails
+
+For detailed setup and usage instructions, refer to the implementation sections above.
+
+### Resources
+- [Chainlink CCIP Documentation](https://docs.chain.link/ccip)
+- [Project Repository](https://github.com/Rahul1227/HealthBridge)
+- [CCIP Explorer](https://ccip.chain.link)
 
 
 
