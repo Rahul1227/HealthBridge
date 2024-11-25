@@ -5,6 +5,8 @@ HealthBridge is an innovative blockchain solution that enables secure and effici
 
 The system consists of two main components: a sender contract deployed on Avalanche Fuji that initiates the data transfer, and a receiver contract on Ethereum Sepolia that receives and stores the patient information. This architecture showcases the potential of cross-chain communication in healthcare, enabling real-time sharing of medical records between different blockchain-based healthcare systems.
 
+![CCIP Diagram](https://github.com/Rahul1227/HealthBridge/blob/main/pictures/ccip-diagram-04_v04.webp)
+
 ## Problem Statement
 In the current Web3 healthcare landscape, medical data exists in silos across different blockchain networks, making it challenging for healthcare providers to access complete patient histories. HealthBridge addresses this critical issue by creating a bridge between hospitals operating on different blockchains. This solution enables healthcare providers to share patient information securely and efficiently, ensuring better patient care through comprehensive access to medical records, regardless of which blockchain network the data originates from.
 
@@ -43,22 +45,24 @@ struct PatientInfo {
 
 ## Project Structure
 ```
-├── blockchain-voting-dapp 
-.deps/
-└── npm/
-    └── @chainlink/
-docs.chain.link/
-└── samples/
-    └── CCIP/
-        ├── artifacts/
-        │   └── build-info/
-        │       ├── Sender.json
-        │       ├── Sender_metadata.json
-        │       ├── Receiver.json
-        │       └── Receiver_metadata.json
-        ├── receiver.sol   # The receiver contract deployed at Ethereum Sepolia
-        ├── sender.sol     # The sender contract deployed at Avalanche Fuji
-        └── README.md      # Project documentation and setup guide
+HealthBridge/
+├── .deps/
+│   └── ...
+├── docs.chain.link/
+│   └── samples/
+│       └── CCIP/
+│           ├── artifacts/
+│           │   └── build-info/
+│           │       ├── Receiver.json
+│           │       ├── Receiver_metadata.json
+│           │       ├── Sender.json
+│           │       └── Sender_metadata.json
+│           ├── receiver.sol        # The receiver contract deployed at Ethereum Sepolia
+│           │
+│           └── sender.sol          # The sender contract deployed at Avalanche Fuji
+├── pictures/
+│   
+└── README.md                        # Project documentation and setup guide
 ```
 ## Prerequisites
 
@@ -112,6 +116,12 @@ docs.chain.link/
 
 4. **Deployment Settings**
    - In Remix, go to "Deploy & Run Transactions" tab
+     <div align="left">
+      <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/deploy-sender-avalanche-fuji.webp" width="550" height="700">
+    </div>
+
+
+
    - Select "Injected Provider - MetaMask" as environment
    - Enter the following contract parameters:<br>
       Router Address:
@@ -153,6 +163,10 @@ docs.chain.link/
 
 3. **Deployment Settings**
    - Access "Deploy & Run Transactions" tab in Remix
+  <div align="left">
+  <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/deploy-receiver-sepolia.webp" width="550" height="600">
+</div>
+
    - Select "Injected Provider - MetaMask"
    - Enter the router address:<br>
      Router Address:
@@ -193,6 +207,10 @@ docs.chain.link/
          timestamp: [Current Unix Timestamp]
      }
      ```
+     <div align="left">
+      <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/filling-info-in-sender.png" width="400" height="550">
+    </div>
+
 
 3. **Execute Transfer**
    - Click "transact" button
@@ -208,6 +226,10 @@ docs.chain.link/
    - Input transaction hash in CCIP Explorer
    - Monitor cross-chain progress
    - Verify successful data delivery
+    <div align="left">
+  <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/ccip-explorer-tx-details.webp" width="650" height="700">
+</div>
+
 
 6. **Gas Considerations**
    - Keep extra LINK tokens for gas spikes
@@ -218,6 +240,9 @@ docs.chain.link/
    - Check "Success" status in CCIP Explorer
    - Verify data on Ethereum Sepolia
    - Confirm patient data in receiver contract
+     <div align="left">
+  <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/ccip-explorer-tx-details-success.webp" width="650" height="700">
+</div>
   
 ### Reading Patient Data from Receiver Contract
 
@@ -240,6 +265,10 @@ docs.chain.link/
          timestamp: [transfer timestamp]
      }
      ```
+     <div align="left">
+      <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/receiving%20same%20info.png" width="400" height="550">
+    </div>
+     
 
 3. **Data Verification**
    - Confirm message ID matches the sent transaction
