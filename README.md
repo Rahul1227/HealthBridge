@@ -88,17 +88,47 @@ HealthBridge/
    - Testnet LINK tokens
    - Testnet AVAX tokens
    - Testnet ETH tokens
+  
+#### Note: The above link requires metamask account to hold 1 LINK token on Ethereum mainnet to obtain Avalanche and Sepolia tokens.
+### Alternative of [Chainlink Faucet](https://faucets.chain.link)
+#### Avalanche Fuji 
+1. Visit [Core](https://core.app/tools/testnet-faucet/?subnet=c&token=c)
+2. Connect your Metamask wallet
+3. Select correct network
+4. Enter Coupon Code :<br> 
+   
+   ```
+   avalanche-academy
+   ```
+5. Click on  ``` Request 2 AVAX ```
+   <div align="left">
+      <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/Fuji%20faucet.png">
+    </div>
+
+#### Ethereum Sepolia
+1. Visit [Sepolia-Faucet.io](https://www.sepoliafaucet.io/)
+2. Enter your Metamask account addrest
+3. Click on get tokens
+    <div align="left">
+      <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/sepolia%20faucet.png">
+    </div>
 
 ### Network Configurations
 - Avalanche Fuji
   - RPC URL: https://api.avax-test.network/ext/bc/C/rpc
   - Chain ID: 43113
   - Currency Symbol: AVAX
+    <div align="left">
+      <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/Fuji-setup.png" width="300" height="550">
+    </div>
 
 - Ethereum Sepolia
   - RPC URL: https://rpc.sepolia.org
   - Chain ID: 11155111
   - Currency Symbol: ETH
+    <div align="left">
+      <img src="https://github.com/Rahul1227/HealthBridge/blob/main/pictures/sepolia-setup.png" width="300" height="550">
+    </div>
 
 ## Implementation
 
